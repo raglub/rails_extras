@@ -1,3 +1,3 @@
-module RailsExtras
-  VERSION = "0.0.1"
+class RailsExtras
+  VERSION = "0.1.0"
 end
