@@ -42,4 +42,26 @@ describe ApplicationHelper do
     #  value = 100
     #end
   end
+
+  describe ".add_link" do
+    it "should generate link with block without handle" do
+      helper.add_link('example.com', class: 'example') do
+        'Example.com'
+      end.should eq("<a class=\"example\" href=\"example.com\">Example.com</a>")
+    end
+
+    it "should generate link with block and handle" do
+      helper.add_link('example.com', class: 'example') do |tag|
+        tag << 'Example'
+        tag << 'link'
+        tag.space('with')
+        tag << 'space!'
+      end.should eq("<a class=\"example\" href=\"example.com\">Examplelinkwith space!</a>")
+    end
+
+    it "should generate link without block" do
+      helper.add_link('Example.com', 'example.com', class: 'example').should eq("<a class=\"example\" href=\"example.com\">Example.com</a>")
+    end
+
+  end
 end

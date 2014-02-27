@@ -31,6 +31,25 @@ class RailsExtras
           end
         end
       end
+
+      def add_link(name = nil, options = nil, html_options = nil, &block)
+        if block_given?
+          if block.arity == 1
+            link_to(name, options) do
+              add_tag do |tag|
+                block.call(tag)
+              end
+            end
+          else
+            link_to(name, options) do
+              block.call
+            end
+          end
+        else
+          link_to(name, options, html_options)
+        end
+
+      end
     end
   end
 end
