@@ -35,12 +35,10 @@ describe ApplicationHelper do
       end.should eq("<div class=\"example\">Example1 Example2</div>")
     end
 
-    #it_should_not_authorize_for self, [:no_logged, :foreign] do
-    #end
+    it "should generate content for div tag with empty content" do
+      helper.add_tag(:div, '', class: 'example').should eq("<div class=\"example\"></div>")
+    end
 
-    #it_behaves_like 'not_authorize_for', [:no_logged, :foreign], auth: :basic do
-    #  value = 100
-    #end
   end
 
   describe ".add_link" do
