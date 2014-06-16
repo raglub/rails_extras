@@ -1,8 +1,9 @@
 class RailsExtras
   module Helpers
     module Tag
-      def add_tag(name=nil, options={}, &block)
+      def add_tag(name=nil, options_or_content={}, options={}, &block)
         if block_given?
+          options = options_or_content
           if block.arity == 1
             result = ActiveSupport::SafeBuffer.new
             def result.space(text)
@@ -29,6 +30,8 @@ class RailsExtras
               block.call
             end
           end
+        else
+          content_tag(name, options_or_content, options)
         end
       end
 

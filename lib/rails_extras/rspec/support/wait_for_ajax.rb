@@ -3,7 +3,7 @@ class RailsExtras
     module Support
       module WaitForAjax
 
-        def wait_for_ajax
+        def self.wait_for_ajax
           counter = 0
           while page.execute_script("return $.active").to_i > 0
             counter += 1
